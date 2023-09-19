@@ -1,0 +1,119 @@
+{% extends "New/base.html" %}
+{% load static %}
+{% block content %}
+  {% for globs in glob %}
+    {% for contact in conn %}
+      <section class="banner position-relative">
+        <div class="image-cont">
+          <img src="{{ contact.slider_image.url }}" alt="" class="w-full">
+        </div>
+        <div class='position-absolute top-0 left-0 bg-dark opacity-50'
+             style="width: 100%;
+                    height: 100%"></div>
+        <div class="d-flex justify-content-center align-items-center"
+             style="width: 100%;
+                    height: 100%">
+          <h2>{{ contact.name }}</h2>
+        </div>
+      </section>
+      <section class="contact-form">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 pt-3 ">
+              <h4>{{ contact.title }}</h4>
+            {% endfor %}
+            <div class="contact-text">
+              <ul class="list-inline">
+                <li class="list-inline-item d-flex align-items-center">
+                  <i class="fa-solid fa-location-dot mx-3"></i>{{ globs.SiteAddress }}
+                </li>
+              </li>
+              <li class="d-flex align-items-center">
+                <i class="fa-regular fa-envelope mx-3 "></i>{{ globs.SiteEmail }}
+              </li>
+              <li class="d-flex align-items-center">
+                <i class="fa-solid fa-phone mx-3"></i>{{ globs.SiteContact }}
+              </li>
+            </ul>
+          </div>
+          <p>Follow Us</p>
+          <div class="last-footer_icon">
+            <ul class="list-inline tt">
+              <li class="list-inline-item">
+                <a href="" class="t2"><i class="fa-brands fa-facebook-f"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href=""class="f3"><i class="fa-brands fa-twitter"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="" class="p4"><i class="fa-brands fa-instagram"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="" class="g4"><i class="fa-brands fa-linkedin-in"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="" class="in5"><i class="fa-brands fa-whatsapp"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-8  p-5  ">
+          <h1 class="text-center">Contact Us</h1>
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                 role="alert">
+              <strong></strong> {{ message }}
+              <button type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"></button>
+            </div>
+          {% endfor %}
+          <form class="row mt-4" method="POST" action="{% url 'contact' %}">
+            {% csrf_token %}
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="name" placeholder="your name">
+            </div>
+            <div class="col-md-6">
+              <input type="email"
+                     class="form-control"
+                     name="email"
+                     placeholder="email-address">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="subject" placeholder="Subject">
+            </div>
+            <div class="col-md-6">
+              <input type="text"
+                     class="form-control"
+                     name="phone"
+                     placeholder="phone number">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="city"  placeholder="City">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="Country" placeholder="Country">
+            </div>
+            <div class="col-12 text-center ">
+              <button type="submit" class="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="google-map">
+    <div class="container-fluif google">
+      <h4>Google Map</h4>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14130.924577444284!2d85.33106357081337!3d27.694703324266495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199a06c2eaf9%3A0xc5670a9173e161de!2z4KSo4KSv4KS-4KSBIOCkrOCkvuCkqOClh-CktuCljeCkteCksCwg4KSV4KS-4KSg4KSu4KS-4KSh4KWM4KSBIDQ0NjAw!5e0!3m2!1sne!2snp!4v1678478989834!5m2!1sne!2snp"
+              width="100%"
+              height="500"
+              style="border:0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+{% endfor %}
+{% endblock content %}

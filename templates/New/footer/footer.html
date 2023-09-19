@@ -1,0 +1,153 @@
+{% load static %}
+{% for globs in glob %}
+    <footer>
+        <div class="container py-5">
+            <div class="row py-5">
+                <div class="col-lg-4">
+                    <div class="footer-img text-center">
+                        <ul class="list-inline">
+                        </ul>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <img class="mt-2"
+                                     src="{{ globs.logo.url }}"
+                                     alt=""
+                                     style="width: 120px;
+                                            height: 100px">
+                            </li>
+                        </ul>
+                        <div class="footer-icon mt-5">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="{{ globs.Sitefacebooklink }}"><i class="fa-brands fa-facebook-f" target="_blank"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{{ globs.Sitelinkdinlink }}"><i class="fa-brands fa-linkedin-in" target="_blank"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{{ globs.Siteinstagramlink }}"><i class="fa-brands fa-instagram" target="_blank"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-heading">
+                        <h5 class="mb-4">OUR OFFICE</h5>
+                    </div>
+                    <div class="footer-content">
+                        <ul class="list-inline">
+                            <li class="list-inline-item d-flex align-items-center">
+                                <i class="fa-solid fa-location-dot mx-2"></i>{{ globs.SiteAddress }}
+                            </li>
+                        </ul>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="mailto:{{ globs.SiteEmail }}" target="_blank"><i class="fa-solid fa-envelope mx-2"></i></a>{{ globs.SiteEmail }}
+                            </li>
+                        </ul>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <i class="fa-solid fa-phone mx-2"></i>{{ globs.SiteContact }}
+                            </li>
+                        </ul>
+                        <div class="country-title py-3">
+                            <a href="{{ globs.brochure.url }}" target="_blank">{{ globs.brochure_name }}
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="60px"
+                                     height="26px"
+                                     fill="currentColor"
+                                     class="bi bi-file-earmark-arrow-down"
+                                     viewBox="0 0 16 16">
+                                    <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z" />
+                                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-heading">
+                        <h5>QUICK LINKS</h5>
+                    </div>
+                    <div class="footer-nav">
+                        <ul>
+                            <li>
+                                <a href="home">Home</a>
+                            </li>
+                            <li>
+                                <a href="about">About Us</a>
+                            </li>
+                            <li>
+                                <a href="contact">Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="oli_gas">Industries</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-heading">
+                        <h5>INDUSTRY</h5>
+                    </div>
+                    <div class="footer-nav">
+                        <ul>
+                            <li>
+                                <a href="information">Information Technology</a>
+                            </li>
+                            <li>
+                                <a href="oli_gas">Oil & Gas</a>
+                            </li>
+                            <li>
+                                <a href="ecommerce">E-commerces</a>
+                            </li>
+                            <li>
+                                <a href="manufacturing">Manufacturing</a>
+                            </li>
+                            <li>
+                                <a href="financial">Financial</a>
+                            </li>
+                            <li>
+                                <a href="realestate">Real-State</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <section class="last-footer py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <p>Copyright © 2023. All rights reserved.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="last-footer_icon">
+                        <ul class="list-inline tt">
+                            <li class="list-inline-item">
+                                <a href="{{ globs.Sitefacebooklink }}"><i class="fa-brands fa-facebook-f" target="_blank"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{ globs.Sitetwitterlink }}"><i class="fa-brands fa-twitter" target="_blank"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{ globs.Siteinstagramlink }}"><i class="fa-brands fa-instagram" target="_blank"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{ globs.Sitelinkdinlink }}"><i class="fa-brands fa-linkedin-in" target="_blank"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{ globs.Sitewhatsapplink }}"><i class="fa-brands fa-whatsapp" target="_blank"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <p>Designed by Radiant Infotech</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}

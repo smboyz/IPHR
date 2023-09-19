@@ -1,0 +1,299 @@
+{% extends "New/base.html" %}
+{% load static %}
+{% block content %}
+    {% for heals in heal %}
+        <!-- industries banner section start -->
+        <section class="banner position-relative">
+            <div class="image-cont">
+                <img src="{{ heals.slider_image.url }}" alt="" class="w-full">
+            </div>
+            <div class='position-absolute top-0 left-0 bg-dark opacity-50'
+                 style="width: 100%;
+                        height: 100%"></div>
+            <div class="d-flex justify-content-center align-items-center"
+                 style="width: 100%;
+                        height: 100%">
+                <h2>{{ heals.name }}</h2>
+            </div>
+        </section>
+        <!-- industries banner section end -->
+        <!-- staffing services section start -->
+        <section style="background: #F6F5FF; padding: 5% 0;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5">
+                        <img style="border-radius: 0 0 30% 0"
+                             src="{{ heals.bannerimage.url }}"
+                             alt=""
+                             class="w-100">
+                    </div>
+                    <div class="col-lg-6">
+                        <div style="text-align: justify;">
+                            <h2 class="fw-bold">{{ heals.title }}</h2>
+                            <p class="m-0">
+                                {% autoescape off %}
+                                    {{ heals.short_desc }}
+                                {% endautoescape %}
+                            </p>
+                        </div>
+                        <a href="{% url 'contact' %}">
+                            <button class="contact_button">
+                                Contact Us <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- staffing services section end -->
+        <!-- why do you need service section start -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 class="fw-bold">{{ heals.meta_title }}</h1>
+                        <p>
+                            {% autoescape off %}
+                                {{ heals.desc }}
+                            {% endautoescape %}
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <img class="w-100" src="{{ heals.image.url }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- why do you need service section end -->
+        <!-- what benefit section start -->
+        {% for heals in heal_1 %}
+            <section style="background: #F6F5FF; padding: 5% 0;">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-6">
+                            <img src="{{ heals.bannerimage.url }}" alt="" class="w-100 img-fluid">
+                        </div>
+                        <div class="col-lg-6">
+                            <div style="text-align: justify;">
+                                <h1 class="fw-bold">{{ heals.title }}</h1>
+                                <p class="m-0">
+                                    {% autoescape off %}
+                                        {{ heals.short_desc }}
+                                    {% endautoescape %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- what benefit section end -->
+            <!-- searching process section start  -->
+            <section class="steps py-5 text-center">
+                <div class="container py-5">
+                    {% for steps in step %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5>{{ steps.name }}</h5>
+                                <h1>{{ steps.title }}</h1>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>
+                                    {% autoescape off %}
+                                        {{ steps.short_desc }}
+                                    {% endautoescape %}
+                                </p>
+                            </div>
+                            {% for steps_1 in step_1 %}
+                                <div class="col-lg-3 mt-5">
+                                    <div class="steps-icon">
+                                        <i class="{{ steps_1.icon_image }}"></i>
+                                    </div>
+                                    <div class="steps-text">
+                                        <h6 class="mt-2">{{ steps_1.position }}</h6>
+                                        <h4>{{ steps_1.name }}</h4>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+            <!-- searching process section end  -->
+            <!-- what makes different section start -->
+            <section style="background: #F6F5FF; padding: 5% 0;">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-6">
+                            <img src="{{ heals.image.url }}" alt="" class="w-100 img-fluid">
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <img class="img-fluid" src="" alt="">
+                                <h1 class="fw-bold">{{ heals.meta_title }}</h1>
+                                <p style="text-align: justify;">
+                                    {% autoescape off %}
+                                        {{ heals.desc }}
+                                    {% endautoescape %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+    </section>
+    <section class="contact-us_two py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-0"></div>
+                <div class="col-md-12 ">
+                    <form method="POST"
+                          action="{% url 'healthcare' %}"
+                          class="contact-form bg-dark p-4">
+                        {% csrf_token %}
+                        {% for contact in conn %}
+                            <div class="contact-title d-flex flex-column align-items-center">
+                                <h5 class="text-center">Contact Us</h5>
+                                <h2 class="text-center my-4">{{ contact.title }}</h2>
+                            </div>
+                        {% endfor %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                                 role="alert">
+                                <strong></strong> {{ message }}
+                                <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" name="name"  placeholder="Your Name" required>
+                                <input type="text" name="phone"  placeholder="Your Number" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" name="email"  placeholder="Your Mail" required>
+                                <input type="text" name="business"  placeholder="Business Name" required>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <textarea name="message" placeholder="message"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="contact-btn">
+                                    <button type="submit" class="submit">Send Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endfor %}
+<!-- learn more about services section start -->
+<section class="learn_services" style="background: #F6F5FF; padding: 5% 0;">
+    <div class="container">
+        <h1 class="text-center">Learn More About our Other Industries:</h1>
+        <div class="row justify-content-between py-5 row-gap-4">
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-edit"></i>
+                    <a href="{% url 'staffing' %}">Contract Staffing</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-handshake"></i>
+                    <a href="{% url 'recruiment' %}">Recruitment</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-oil-can"></i>
+                    <a href="{% url 'oli_gas' %}">Oil and Gas</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-shopping-cart"></i>
+                    <a href="{% url 'ecommerce' %}">E-commerce</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-industry"></i>
+                    <a href="{% url 'manufacturing' %}">Manufacturing Industry</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-plus-square"></i>
+                    <a href="{% url 'hospitality' %}">Hospitality</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-hand-holding-medical"></i>
+                    <a href="{% url 'healthcare' %}">Healthcare</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-coins"></i>
+                    <a href="{% url 'financial' %}">Financial & Banking</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-user-tie"></i>
+                    <a href="{% url 'hr_business' %}">HR and Business Support</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-tools"></i>
+                    <a href="{% url 'realestate' %}">Real Estate & Construction</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-link"></i>
+                    <a href="{% url 'supplychain' %}">Supply chain and Logistics</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fas fa-bolt"></i>
+                    <a href="{% url 'energychemical' %}">Energy & Chemicals</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class=" fs-4 fa-solid fa-trademark"></i>
+                    <a href="{% url 'retailtrading' %}">Retail & Trading</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fa-solid fa-cube"></i>
+                    <a href="{% url 'fmcg' %}">FMCG Industry</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fa-solid fa-truck-fast"></i>
+                    <a href="{% url 'shipping' %}">Shipping Industry</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fs-4 fa-brands fa-square-github"></i>
+                    <a href="{% url 'information' %}">Information Technology</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- learn more about services section end -->
+{% endblock content %}

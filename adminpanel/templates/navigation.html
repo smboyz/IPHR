@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
+             id="navbarBlur"
+             navbar-scroll="true">
+            <div class="container-fluid py-1 px-3">
+                <nav aria-label="breadcrumb">
+                    <h6 class="font-weight-bolder mb-0">Create New</h6>
+                </nav>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <style>
+            .container {
+                max-width: 1000px;
+                margin: 0 auto;
+              }
+              
+              .card {
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #f5f5f5;
+                padding: 20px;
+              }
+              
+              .card-body {
+                padding: 0;
+              }
+              
+              .table-responsive {
+                overflow-x: auto;
+              }
+              
+              .form-group {
+                margin-bottom: 20px;
+              }
+              
+              label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+              }
+              
+              input[type="text"],
+              textarea,
+              input[type="file"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+              }
+              
+              textarea {
+                height: 100px;
+              }
+              
+              button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+              }
+              
+              button:hover {
+                background-color: #45a049;
+              }
+              
+              button:active {
+                background-color: #3e8948;
+              }
+              
+              button:focus {
+                outline: none;
+              }
+              
+        </style>
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card my-4">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                                <h6 class="text-white text-capitalize ps-3">Detail</h6>
+                            </div>
+                        </div>
+                        <div class="card-body px-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <div class="container">
+                                    <div class="card">
+                                        <form method="POST"
+                                              action="{% url 'navigation' %}"
+                                              enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            {% comment %} {{ form }}
+                                            <input type="hidden" name="next" value="{{ request.path }}">  {% endcomment %}
+                                            <div class="form-group">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" name="name" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Caption</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" name="caption">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Status</label>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <select name="status">
+                                                                    <option value="">Select Status</option>
+                                                                    <option value="Publish">Publish</option>
+                                                                    <option value="Draft">Draft</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Position</label>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <input type="number" name="position" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Page Type</label>
+                                                            </div>
+                                                            <div class="col-5">
+                                                                <select name="page_type" required>
+                                                                    <option value="">Select Page Type</option>
+                                                                    <option value="Home">Home</option>
+                                                                    <option value="Step">Step</option>
+                                                                    <option value="Step_1">Step_1</option>
+                                                                    <option value="Group">Group</option>
+                                                                    <option value="Home/About">Home/About</option>
+                                                                    <option value="Contact">Contact</option>
+                                                                    <option value="Mission/Vision">Mission/Vision</option>
+                                                                    <option value="Slider">Slider</option>
+                                                                    <option value="Service">Service</option>
+                                                                    <option value="Service_1">Service_1</option>
+                                                                    <option value="Connectstaff">Connectstaff</option>
+                                                                    <option value="mass">mass</option>
+                                                                    <option value="Contact_1">Contact_1</option>
+                                                                    <option value="Contact_2">Contact_2</option>
+                                                                    <option value="Testimonial">Testimonials</option>
+                                                                    <option value="Testimonial_1">Testimonial_1</option>
+                                                                    <option value="Feature">Feature</option>
+                                                                    <option value="Feature/mobile">Feature/mobile</option>
+                                                                    <option value="mass_1">mass_1</option>
+                                                                    <option value="mass_2">mass_2</option>
+                                                                    <option value="mass_3">mass_3</option>
+                                                                    <option value="Contract">Contract</option>
+                                                                    <option value="Contract_1">Contract_1</option>
+                                                                    <option value="Contract_2">Contract_2</option>
+                                                                    <option value="Recruitment">Recruitment</option>
+                                                                    <option value="Recruitment_1">Recruitment_1</option>
+                                                                    <option value="Recruitment_2">Recruitment_2</option>
+                                                                    <option value="Staff/Contact">Staff/Contact</option>
+                                                                    <option value="Recruitment/Contact">Recruitment/Contact</option>
+                                                                    <option value="ContactUs">ContactUs</option>
+                                                                    <option value="AllJob">AllJob</option>
+                                                                    <option value="AllJob_1">AllJob_1</option>
+                                                                    <option value="Submit_CV">Submit_CV</option>
+                                                                    <option value="AboutUs">AboutUs</option>
+                                                                    <option value="AboutUs_1">AboutUs_1</option>
+                                                                    <option value="Oil and Gas">Oil and Gas</option>
+                                                                    <option value="E-Commerce">E-Commerce</option>
+                                                                    <option value="Manufacturing">Manufacturing</option>
+                                                                    <option value="Hospitality">Hospitality</option>
+                                                                    <option value="Healthcare">Healthcare</option>
+                                                                    <option value="Financial & Banking">Financial & Banking</option>
+                                                                    <option value="HR and Business">HR and Business</option>
+                                                                    <option value="Real Estate">Real Estate</option>
+                                                                    <option value="Supply chain">Supply chain</option>
+                                                                    <option value="Energy & Chemicals">Energy & Chemicals</option>
+                                                                    <option value="Retail & Trading">Retail & Trading</option>
+                                                                    <option value="FMCG">FMCG</option>
+                                                                    <option value="Shipping">Shipping</option>
+                                                                    <option value="Information">Information</option>
+                                                                    <option value="Oil and Gas_1">Oil and Gas_1</option>
+                                                                    <option value="E-Commerce_1">E-Commerce_1</option>
+                                                                    <option value="Manufacturing_1">Manufacturing_1</option>
+                                                                    <option value="Hospitality_1">Hospitality_1</option>
+                                                                    <option value="Healthcare_1">Healthcare_1</option>
+                                                                    <option value="Financial & Banking_1">Financial & Banking_1</option>
+                                                                    <option value="HR and Business_1">HR and Business_1</option>
+                                                                    <option value="Real Estate_1">Real Estate_1</option>
+                                                                    <option value="Supply chain_1">Supply chain_1</option>
+                                                                    <option value="Energy & Chemicals_1">Energy & Chemicals_1</option>
+                                                                    <option value="Retail & Trading_1">Retail & Trading_1</option>
+                                                                    <option value="FMCG_1">FMCG_1</option>
+                                                                    <option value="Shipping_1">Shipping_1</option>
+                                                                    <option value="Information_1">Information_1</option>
+                                                                    <option value="Oil/Contact">Oil/Contact</option>
+                                                                    <option value="Commerce/Contact">Commerce/Contact</option>
+                                                                    <option value="Manufac/Contact">Manufac/Contact</option>
+                                                                    <option value="Hospital/Contact">Hospital/Contact</option>
+                                                                    <option value="Health/Contact">Health/Contact</option>
+                                                                    <option value="Financial/Contact">Financial/Contact</option>
+                                                                    <option value="HR/Contact">HR/Contact</option>
+                                                                    <option value="Real/Contact">Real/Contact</option>
+                                                                    <option value="Supply/Contact">Supply/Contact</option>
+                                                                    <option value="Energy/Contact">Energy/Contact</option>
+                                                                    <option value="Retail/Contact">Retail/Contact</option>
+                                                                    <option value="FMCG/Contact">FMCG/Contact</option>
+                                                                    <option value="Shipping/Contact">Shipping/Contact</option>
+                                                                    <option value="Inform/Contact">Inform/Contact</option>
+                                                                    {% comment %} <option value="Why">Why</option>
+                                                                    <option value="Why 1">Why 1</option>
+                                                                    <option value="Why 2">Why 2</option> {% endcomment %}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Parent</label>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <input type="number" name="Parent" value="{{ parent_id }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-10">
+                                                            <div class="col-12 p-2">
+                                                                <label>Title</label>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <input type="text" name="title">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="col-12 p-2">
+                                                                <label for="short_desc">Short Description</label>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <textarea class="summernote" id="summernote" name="short_desc"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="col-12 p-2">
+                                                                <label>Description</label>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <textarea class="summernote" id="summernote" name="desc"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Meta Title</label>
+                                                            </div>
+                                                            <div class="col-10">
+                                                                <input type="text" name="meta_title" value="{{ obj.meta_title }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Meta Keyword</label>
+                                                            </div>
+                                                            <div class="col-10">
+                                                                <input type="text" name="meta_keyword" value="{{ obj.meta_keyword }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Banner Image</label>
+                                                            </div>
+                                                            <div class="col-8 mt-5">
+                                                                <input type="file" name="bannerimage">
+                                                                {% if obj.bannerimage %}
+                                                                    <img src="{{ obj.bannerimage.url }}" style="max-width: 50%; height: auto" />
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Image</label>
+                                                            </div>
+                                                            <div class="col-8 mt-5">
+                                                                <input type="file" name="image">
+                                                                {% if obj.image %}
+                                                                    <img src="{{ obj.image.url }}" style="max-width: 50%; height: auto" />
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 mt-5">
+                                                            <div class="col-12 p-2">
+                                                                <label>Slider Image</label>
+                                                            </div>
+                                                            <div class="col-8 mt-5">
+                                                                <input type="file" name="slider_image">
+                                                                {% if obj.slider_image %}
+                                                                    <img src="{{ obj.slider_image.url }}" style="max-width: 50%; height: auto">
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="col-12 p-2">
+                                                                <label>Icon Image</label>
+                                                            </div>
+                                                            <div class="col-8 mt-5">
+                                                                <input type="text" name="icon_image" value="{{ obj.icon_image }}">
+                                                                {% comment %} {% if obj.icon_image %}
+                                                                    <img src="{{ obj.icon_image.url }}" style="max-width: 50%; height: auto">
+                                                                {% endif %} {% endcomment %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 mt-5">
+                                                            <div class="col-12 p-2">
+                                                                <label>Brochure</label>
+                                                            </div>
+                                                            <div class="col-8 mt-5">
+                                                                <input type="file" name="brochure">
+                                                                {% if obj.brochure %}
+                                                                    <a href="{{ obj.brochure.url }}" target="_blank">{{ obj.brochure }}
+                                                                        {% comment %} <img src="{{ obj.brochure.url }}" style="max-width: 50%; height: auto"> {% endcomment %}
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="container">
+                                                                    <div class="row"></div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="col-12 mt-5">
+                                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    {% endblock content %}

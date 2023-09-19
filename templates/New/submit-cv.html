@@ -1,0 +1,98 @@
+{% extends "New/base.html" %}
+{% load static %}
+{% block content %}
+{% for submit in s_cv %}
+  <section class="banner">
+    <div class="image-cont">
+      <img src="{{ submit.slider_image.url }}" alt="" class="w-full">
+    </div>
+    <div class='position-absolute top-0 left-0 bg-dark opacity-50'
+         style="width: 100%;
+                height: 100%"></div>
+    <div class="d-flex justify-content-center align-items-center"
+         style="width: 100%;
+                height: 100%">
+      <h2>{{ submit.name }}</h2>
+    </div>
+  </section>
+  <section>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-8 offset-md-2" id="form">
+          <h2 class="text-center">{{submit.title}}</h2>
+          <h4 class="text-center">{% autoescape off %}
+            {{submit.short_desc}}
+          {% endautoescape %}</h4>
+          <form method="POST"
+                action="{% url 'submit_cv' %}"
+                enctype="multipart/form-data">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                   role="alert">
+                <strong></strong> {{ message }}
+                {% comment %} <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"></button> {% endcomment %}
+              </div>
+            {% endfor %}
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="">Name</label>
+              <input type="text"
+                     name="name"
+                     class="form-control text"
+                     placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <label for="">Email address</label>
+              <input type="email"
+                     name="email"
+                     class="form-control text"
+                     placeholder="Your Mail">
+            </div>
+            <div class="form-group">
+              <label for="">Profession</label>
+              <input type="text"
+                     name="profession"
+                     class="form-control text"
+                     placeholder="Profession">
+            </div>
+            <div class="form-group">
+              <label for="">Phone</label>
+              <input type="text"
+                     name="phone"
+                     class="form-control text"
+                     placeholder="Your phone number">
+            </div>
+            <div class="form-group">
+              <label for="inputVisa">Select</label>
+              <select id="inputVisa" name="visa" class="form-control">
+                <option value="visit">Visit Visa</option>
+                <option value="sponsor">Sponsor Visa</option>
+                <option value="employment">Employment Visa</option>
+                <option value="azad">Azad Visa</option>
+                <option value="freelance">Freelance Visa</option>
+              </select>
+            </div>
+            <div class="from-group">
+              <label>Upload Your CV</label>
+              <input type="file" class="form-control" name="cv">
+            </div>
+            <div class="from-group mt-5">
+              <textarea class="form-control"
+                        rows="6"
+                        placeholder="Type Message"
+                        name="message"></textarea>
+            </div>
+            <div class="from-group">
+              <button type="submit">Send Message</button>
+            </div>
+         
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endfor %}
+{% endblock content %}

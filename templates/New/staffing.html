@@ -1,0 +1,171 @@
+{% extends "New/base.html" %}
+{% load static %}
+{% block content %}
+  {% for contract in staff %}
+    <section class="banner position-relative">
+      <div class="image-cont">
+        <img src="{{ contract.slider_image.url }}" alt="" class="w-full">
+      </div>
+      <div class='position-absolute top-0 left-0 bg-dark opacity-50'
+           style="width: 100%;
+                  height: 100%"></div>
+      <div class="d-flex justify-content-center align-items-center"
+           style="width: 100%;
+                  height: 100%">
+        <h2>{{ contract.name }}</h2>
+      </div>
+    </section>
+    <section class="volume py-5">
+      {% for contract in staff_1 %}
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="d-flex justify-content-center">
+                <h5 style="border-bottom: 3px solid #079b40; color: #079b40;">{{ contract.caption }}</h5>
+              </div>
+              <h2>{{ contract.title }}</h2>
+            </div>
+            <div class="col-lg-6">
+              <div class="volume-text">
+                <p>
+                  {% autoescape off %}
+                    {{ contract.short_desc }}
+                  {% endautoescape %}
+                </p>
+              </div>
+            </div>
+            <h2 class="text-center mt-5">{{ contract.meta_title }}</h2>
+            <div class="col-lg-6">
+              <img src="{{ contract.bannerimage.url }}" alt="" style="width: 100%;">
+            </div>
+            <div class="col-lg-6">
+              <p>
+                {% autoescape off %}
+                  {{ contract.desc }}
+                {% endautoescape %}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+    <section class="steps py-5 text-center">
+      <div class="container py-5">
+        {% for steps in step %}
+          <div class="row">
+            <div class="col-lg-6">
+              <h5>{{ steps.name }}</h5>
+              <h1>{{ steps.title }}</h1>
+            </div>
+            <div class="col-lg-6">
+              <p>
+                {% autoescape off %}
+                  {{ steps.short_desc }}
+                {% endautoescape %}
+              </p>
+            </div>
+            {% for steps_1 in step_1 %}
+              <div class="col-lg-3 mt-5">
+                <div class="steps-icon">
+                  <i class="{{ steps_1.icon_image }}"></i>
+                </div>
+                <div class="steps-text">
+                  <h6 class="mt-2">{{ steps_1.position }}</h6>
+                  <h4>{{ steps_1.name }}</h4>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% for contract in staff_2 %}
+      <section class="benifit py-5">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-6">
+              <img src="{{ contract.bannerimage.url }}" alt="" class="w-100">
+            </div>
+            <div class="col-lg-6">
+              <h2>{{ contract.title }}</h2>
+              <div class="benifit-text">
+                <p>
+                  {% autoescape off %}
+                    {{ contract.short_desc }}
+                  {% endautoescape %}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="why-chhose-iphr py-5">
+        <div class="container">
+          <h2>{{ contract.meta_title }}</h2>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="why-choose-text">
+                <p>
+                  {% autoescape off %}
+                    {{ contract.desc }}
+                  {% endautoescape %}
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <img src="{{ contract.slider_image.url }}" alt="" class="w-100">
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endfor %}
+    <section class="contact-us_two py-5">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-md-6 offset-md-0"></div>
+          <div class="col-md-12 ">
+            <form action="{% url 'staffing' %}"
+                  method="Post"
+                  class="contact-form bg-dark p-4">
+              {% csrf_token %}
+              {% for contact in conn %}
+                <div class="contact-title d-flex flex-column align-items-center">
+                  <h5 class="text-center">{{ contact.caption }}</h5>
+                  <h2 class="text-center">{{ contact.title }}</h2>
+                </div>
+              {% endfor %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                     role="alert">
+                  <strong></strong> {{ message }}
+                  <button type="button"
+                          class="btn-close"
+                          data-bs-dismiss="alert"
+                          aria-label="Close"></button>
+                </div>
+              {% endfor %}
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" name="name"  placeholder="Your Name" required>
+                  <input type="text" name="phone"  placeholder="Your Number" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" name="email"  placeholder="Your Mail" required>
+                  <input type="text" name="business"  placeholder="Business Name" required>
+                </div>
+                <div class="col-md-12 mt-3">
+                  <textarea name="message" placeholder="message"></textarea>
+                </div>
+                <div class="col-md-12">
+                  <div class="contact-btn">
+                    <button type="submit" class="submit">Send Now</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+{% endblock content %}

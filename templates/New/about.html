@@ -1,0 +1,227 @@
+{% extends "New/base.html" %}
+{% load static %}
+{% block content %}
+  <section class="banner position-relative">
+    {% for about in abo %}
+      <div class="image-cont">
+        <img src="{{ about.slider_image.url }}" alt="" class="w-full">
+      </div>
+      <div class='position-absolute top-0 left-0 bg-dark opacity-50'
+           style="width: 100%;
+                  height: 100%"></div>
+      <div class="d-flex justify-content-center align-items-center"
+           style="width: 100%;
+                  height: 100%">
+        <h2>{{ about.name }}</h2>
+      </div>
+    </section>
+    <section class="about">
+      <div class="container">
+        <h5>{{ about.name }}</h5>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="welcome-heading">
+              <h3 class="mt-5">{{ about.title }}</h3>
+            </div>
+            <div class="welcome-text">
+              <p class="mt-5 mb-5">
+                {% autoescape off %}
+                  {{ about.short_desc }}
+                {% endautoescape %}
+              </p>
+              <div class="about-contact_us">
+                <h4>
+                  {% autoescape off %}
+                    {{ about.desc }}
+                  {% endautoescape %}
+                </h4>
+                <a href="{% url 'contact' %}">Contact Us</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-2">
+            <div id="carouselExampleSlidesOnly"
+                 class="carousel slide "
+                 data-bs-ride="carousel">
+              <div class="carousel-inner">
+                {% for image in about_image %}
+                  <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+                    <img src="{{ image.bannerimage.url }}" class="img-fluid w-100" alt="...">
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+  {% comment %} <section class="case-studies py-5">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-6">
+          <h5>Case Studies</h5>
+          <h2>Temporary staffing services Dubai</h2>
+        </div>
+        <div class="col-lg-6">
+          <p>
+            Temporary staff might be hired on a daily or monthly basis. Please send us the job description. Choose from a pool of ready-to-deploy candidates who have appropriate experience.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="testimonial py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h5>Testimonial</h5>
+          <h2>It’s always a joy to hear that the work we do, has positively reviews.</h2>
+        </div>
+        <div class="col-lg-6">
+          We have spent 9 years working with small and large companies and we have many good
+          review of works.
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-lg-4 ">
+          <div class="testimonial-box">
+            <div class="testimonial-img offset-md-3">
+              <img src="img/team7.jpg" alt="">
+            </div>
+            <div class="testimonial-text">
+              <h6>mariya roze</h6>
+              <p class="mt-4">
+                Connect Staff is really engaging, dependable, and trustworthy, in my opinion. He has effectively identified several employees for our organization. As an international distributor, we frequently expect our employees to be multilingual. Connect Staff was also fast to respond when I needed immediate short-term staffing support.
+              </p>
+              <p>CEO</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 ">
+          <div class="testimonial-box">
+            <div class="testimonial-img offset-md-3">
+              <img src="img/team7.jpg" alt="">
+            </div>
+            <div class="testimonial-text">
+              <h6>mariya roze</h6>
+              <p class="mt-4">
+                Connect Staff is really engaging, dependable, and trustworthy, in my opinion. He has effectively identified several employees for our organization. As an international distributor, we frequently expect our employees to be multilingual. Connect Staff was also fast to respond when I needed immediate short-term staffing support.
+              </p>
+              <p>CEO</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 ">
+          <div class="testimonial-box">
+            <div class="testimonial-img offset-md-3">
+              <img src="img/team7.jpg" alt="">
+            </div>
+            <div class="testimonial-text">
+              <h6>mariya roze</h6>
+              <p class="mt-4">
+                Connect Staff is really engaging, dependable, and trustworthy, in my opinion. He has effectively identified several employees for our organization. As an international distributor, we frequently expect our employees to be multilingual. Connect Staff was also fast to respond when I needed immediate short-term staffing support.
+              </p>
+              <p>CEO</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="question">
+    <div class="container">
+      <h5>FAQ</h5>
+      <h2>You can learn more from our asked questions</h2>
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="question-img mt-5">
+            <img src="img/selective-focus-of-employee-holding-resume-near-recruiters-at-table-in-office.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="question-content">
+            <h3 class="text-center mb-5">Client Question</h3>
+            <div class="row justify-content-center ">
+              <div class="col-lg-8">
+                <div class="bg-white p-4 box py-3">
+                  <div class="accordion" id="mainAccordion">
+                    <div class="accordion-item ">
+                      <div class="accordion-header">
+                        <button class="accordion-button  " data-bs-target="#q1" data-bs-toggle="collapse">
+                          <span class="">What is the difference between recruitment and staffing?</span>
+                        </button>
+                      </div>
+                      <div class="collapse " id="q1" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                          <p>
+                            The main difference between staffing and recruitment is that recruiting means looking and appealing to potential candidates for employment. Candidates go through a selection process, therefore applying for the position, and ultimately deciding if they accept it or not. Companies can complete this process internally, but usually, they hire recruitment agencies.
+                            On the other hand, staffing is a practice of employing and increasing the workforce of a company. In this process, candidates apply for the job positions by themselves. Subsequently, staffing agencies pair these applicants with the right work offers, beneficiating both the employer and employee.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <div class="accordion-header">
+                        <button class="accordion-button button-one" data-bs-target="#q2" data-bs-toggle="collapse">
+                          <span>Where do you hire temporary employees for your business?</span>
+                        </button>
+                      </div>
+                      <div class="collapse " id="q2" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                          <p>
+                            Hiring temporary staffing is an easy process. Usually, recruitment agencies near you provide these services. These companies will provide you with hassle-free staffing solutions that can cover your business needs. First, with the help of an employment agency, you will build an outline of the job opening. Subsequently, establishing the role of the worker's responsibilities.
+                            Staffing services provided by agencies include reviewing resumes and interviewing candidates. Ultimately, choosing the best option to hire from all the candidates. Top staffing agencies usually offer payroll services which means that they will be the ones in charge of paying the manpower staff.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <div class="accordion-header">
+                        <button class="accordion-button" data-bs-target="#q3" data-bs-toggle="collapse">
+                          <span>How much will your company charge?</span>
+                        </button>
+                      </div>
+                      <div class="collapse " id="q3" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                          <p>
+                            Our employment agency has one of the best rates in the market. We offer a wide variety of services, accompanied by top-of-the-notch technology, and a team of qualified agents. Our team of dedicated experts provides a successful experience to every single one of our clients. Once you submit your requests, we will offer you the number one staffing solution in the region.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <div class="accordion-header">
+                        <button class="accordion-button button-one" data-bs-target="#q4" data-bs-toggle="collapse">
+                          <span>How do you screen and evaluate your candidates?</span>
+                        </button>
+                      </div>
+                      <div class="collapse " id="q4" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                          <p>
+                            We count on the necessary tools and technology that permit us to screen and evaluate hundreds of candidates for many job opportunities. Once companies submit their requirements to fill a position, our agents are in charge of selecting the candidates who meet their necessities.
+                            Subsequently, we perform interviews and recreate job situations to select applicants with the highest skillset. Additionally, we verify their qualifications, check their criminal backgrounds, and verify their previous work experiences and references. We count on the most efficient team of experts who navigate through this process frequently.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <div class="accordion-header">
+                        <button class="accordion-button button-one" data-bs-target="#q5" data-bs-toggle="collapse">
+                          <span>Can I leave my CV and Portfolio at your place?</span>
+                        </button>
+                      </div>
+                      <div class="collapse " id="q5" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, ipsa laudantium, iste distinctio tempore a voluptatum natus soluta tenetur quo nisi vitae, dicta accusantium excepturi repudiandae vero nemo ut repellendus!
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  </section> {% endcomment %}
+{% endblock content %}

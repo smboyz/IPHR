@@ -1,0 +1,102 @@
+{% load static %}
+<section class="top-header">
+  {% for globs in glob %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 text-start">
+          <div class="top-text">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="home"><i class="fa-solid fa-building mx-2"></i>{{ globs.Sitelicence }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <marquee onmouseover="this.stop();" onmouseout="this.start();">{{ globs.Sitedescription }}</marquee>
+        </div>
+        <div class="col-lg-4  text-end">
+          <div class="top-social_icon">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="{{ globs.Sitefacebooklink }}"><i class="fa-brands fa-facebook-f" target="_blank"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ globs.Sitetwitterlink }}"><i class="fa-brands fa-twitter" target="_blank"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ globs.Siteinstagramlink }}"><i class="fa-brands fa-instagram" target="_blank"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ globs.Sitelinkdinlink }}"><i class="fa-brands fa-linkedin-in" target="_blank"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ globs.Sitewhatsapplink }}"><i class="fa-brands fa-whatsapp" target="_blank"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <nav class="navbar navbar-expand-lg Larger shadow  sticky-top"
+       style="padding: 0px">
+    <div class="container">
+      <a class="navbar-brand" href="home">
+        <img class="logo_img img-fluid" src="{{ globs.logo.url }}" alt="">
+      </a>
+    {% endfor %}
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link home" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        {% for nav in main %}
+          {% if nav.id != 1 %}
+            {% if nav.id == 21 %}
+              <li class="nav-item">
+                <a class="nav-link home " aria-current="page" href="{% url 'mass' %}">{{ nav.name }}</a>
+              </li>
+            {% elif nav.id == 33 %}
+              <li class="nav-item">
+                <a class="nav-link home " aria-current="page" href="{% url 'all_job' %}">{{ nav.name }}</a>
+              </li>
+            {% elif nav.childs.all %}
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle home "
+                   href="#"
+                   role="button"
+                   data-bs-toggle="dropdown"
+                   aria-expanded="false">{{ nav.name }}</a>
+                <ul class="dropdown-menu  ">
+                  {% for sub_nav in nav.childs.all %}
+                    {% if sub_nav.status == 'Publish' %}
+                      <li>
+                        <a class="dropdown-item " href="{% url 'submenu' name=sub_nav.id %}">{{ sub_nav.name }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link home" href="{% url 'menu' name=nav.id %}">{{ nav.name }}</a>
+              </li>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <ul class="list-inline">
+      </ul>
+    </div>
+  </div>
+</nav>

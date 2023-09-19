@@ -1,0 +1,47 @@
+{% extends "New/base.html" %}
+{% load static %}
+{% block content %}
+  {% for services in serv_1 %}
+    <section class="banner position-relative">
+      <div class="image-cont">
+        <img src="{{ services.slider_image.url }}" alt="" class="w-full">
+      </div>
+      <div class='position-absolute top-0 left-0 bg-dark opacity-50'
+           style="width: 100%;
+                  height: 100%"></div>
+      <div class="d-flex justify-content-center align-items-center"
+           style="width: 100%;
+                  height: 100%">
+        <h2>{{ services.name }}</h2>
+      </div>
+    </section>
+    <section class="hospitality py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="hospitality-text">
+              <p>
+                {% autoescape off %}
+                  {{ services.short_desc }}
+                {% endautoescape %}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="hospitality-text">
+            <img src="{{ services.bannerimage.url }}" alt="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="hospitality-text">
+            <p>
+              {% autoescape off %}
+                {{ services.desc }}
+              {% endautoescape %}
+            </p>
+          </div>
+        </div>
+      </section>
+    {% endfor %}
+  {% endblock content %}
